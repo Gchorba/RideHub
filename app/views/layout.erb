@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Welcome to RideHub!</title>
+  <!--   google fonts -->
+  <link href='//fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/css/map.css">
+  <!-- jquery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!--google maps:-->
+<!--   // <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+ <!--  datepicker -->
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
+<!-- timepicker -->
+<!--   // <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
+
+  <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/themes/redmond/jquery-ui.css" />
+
+  <link rel="stylesheet" type="text/css" href="/css/jquery.ptTimeSelect.css" />
+  <script type="text/javascript" src="/js/jquery.ptTimeSelect.js"></script>
+<!-- gmaps -->
+  <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+<!-- jquery -->
+  <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+</head>
+
+
+<body>
+
+  <nav>
+    <div id="navbar">
+        <div id="logo">
+          <span><a href="/">RIDEHUB</a></span>
+        </div>
+      <% if current_user %>
+
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/new_ride">New Ride</a></li>
+        <li><a href="/about">About</a></li>
+
+      <div id="sign_in_out">
+        <form id="sign-out" action="/sessions/<%= current_user.id %>" method="post">
+          <input name="_method" type="hidden" value="delete" />
+          <input style="color:black" type="submit" value="Sign Out">
+        </form>
+      </div>
+
+</ul>
+
+      <% else %>
+
+      <ul>
+
+        <div id="sign_in_out">
+
+          <a href="/sessions/new">
+          <input style="color:black" type="submit" value="Sign in">
+          </a>
+
+          <a href="/users/new">
+          <input style="color:black" type="submit" value="Sign Up">
+          </a>
+<!--
+          <li><a href="/sessions/new">Sign In</a></li>
+          <li><a href="/users/new">Sign Up</a></li> -->
+        </div>
+      </ul>
+      <% end %>
+    </div>
+  </nav>
+
+  <%= yield %>
+</body>
+</html>
